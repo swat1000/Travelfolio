@@ -27,4 +27,28 @@ async function tripAdditionController(req, res){
 }
 
 
-module.exports = {tripAdditionController}
+async function getTripDetailsController(req, res){
+    try {
+        tripModel.Trip.find({})
+        .then(doc => res.send(doc))
+        .catch(err => res.send('Something went wrong'))
+        
+    } catch (error) {
+        console.log('Error')
+        res.send('Something went wrong')
+    }
+}
+
+async function getTripDetailsByIdController(req, res){
+    try {
+        tripModel.Trip.findById(req.params.id)
+        .then(doc => res.send(doc))
+        .catch(err => res.send('Something went wrong'))
+    } catch (error) {
+        console.log('Error')
+        res.send('Something went wrong')
+    }
+}
+
+
+module.exports = {tripAdditionController, getTripDetailsController, getTripDetailsByIdController}
